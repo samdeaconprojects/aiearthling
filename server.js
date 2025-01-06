@@ -29,10 +29,7 @@ app.post('/ask', async (req, res) => {
         data:
         [       {        "name": "location 1 name",        "latitude": "51.00",        "longitude": "54.00"    },    {        "name": "location 2 name",        "latitude": "35.00",        "longitude": "47.00"    }]
         
-        `; // Truncated for brevity
-        console.log("OPENAI API KEY:", process.env.OPENAI_API_KEY);
-console.log("Google Maps API Key:", process.env.GOOGLE_MAPS_API_KEY);
-
+        `; 
 
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: 'gpt-3.5-turbo',
