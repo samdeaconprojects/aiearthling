@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Earth Map with OpenAI</title>
+    <title>Earth Insights</title>
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/main.js" defer></script>
 </head>
 <body>
-    <div id="questionBox">
-        <button id="backButton" onclick="goBack()" class="back-btn">Back</button>
-        <div id="displayedQuestion"></div>
-        <input type="text" id="questionInput" placeholder="Ask something...">
-        <button onclick="askQuestion()" class="ask-btn">Ask</button>
-        <div id="answer"></div>
-        <div id="locationsList" class="collapsible-container">
-            <button onclick="toggleCollapse()" class="collapsible-btn">Locations</button>
-            <div class="collapsible-content">
-                <!-- The JS will populate this area with the list of locations -->
+    <div id="main-container">
+        <div id="questionBox">
+            <button id="backButton" onclick="goBack()" class="back-btn">Back</button>
+            <div id="displayedQuestion"></div>
+            <input type="text" id="questionInput" placeholder="Ask something...">
+            <button onclick="askQuestion()" class="ask-btn">Ask</button>
+            <div id="answer"></div>
+            <div id="locationsList" class="collapsible-container">
+                <button onclick="toggleCollapse()" class="collapsible-btn">Locations</button>
+                <div class="collapsible-content">
+                    <!-- JS Populates This -->
+                </div>
             </div>
         </div>
-    </div>
-    <div class="map-container">
-        <div id="map-background"></div>
         <div id="map"></div>
     </div>
-    
+    <div id="timeline-container">
+        <canvas id="timeline"></canvas>
+    </div>
 </body>
 </html>

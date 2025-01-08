@@ -1,21 +1,17 @@
 /* ============== GLOBAL STYLES ============== */
 body {
-    background-color: #242f3e;
+    background-color: #e6f7ff;
+    color: #005f73;
+    font-family: Arial, sans-serif;
 }
 
 /* ============== MAP STYLES ============== */
 #map {
     height: 100vh;
     width: 100vw;
-    background-color: #242f3e;
-    margin: 0; /* Ensure no margins */
-    padding: 0; /* Ensure no padding */
-    position: relative; /* Set to relative so the controls can be positioned within it */
-}
-
-/* Override the Google Maps controls background */
-.gm-style > div > div > div:not(.gm-style-mtc) {
-    background-color: #242f3e !important;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 /* ============== QUESTION BOX STYLES ============== */
@@ -23,142 +19,94 @@ body {
     position: absolute;
     z-index: 100;
     top: 10%;
-    left: 50%;
+    left: 20%;
     transform: translateX(-50%);
-    width: 300px;
+    width: 30%;
     padding: 15px;
-    border-radius: 5px;
-    background-color: rgba(120, 120, 120, 0.9);
-    box-shadow: 3px 3px 5px #6c6c6c, -3px -3px 5px #747474;
-    color: #fff;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 3px 3px 5px #cccccc, -3px -3px 5px #f2f2f2;
     text-align: center;
 }
 
-#questionBox.left-aligned {
-    left: 10%;
-    top: 10%;
-    transform: none;
-}
-
-/* -------------- Question Box Inputs -------------- */
+/* Inputs */
 #questionBox input[type="text"] {
     width: 80%;
     padding: 10px;
-    border-radius: 3px;
-    border: none;
-    box-shadow: inset 2px 2px 5px #1a1a1a, inset -2px -2px 5px #2e2e2e;
+    border-radius: 5px;
+    border: 1px solid #94d2bd;
     margin-bottom: 10px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #eaf4f4;
+    color: #005f73;
 }
 
-#questionBox input[type="submit"] {
+.ask-btn, .back-btn {
+    color: #ffffff;
+    background-color: #0a9396;
+    border: none;
+    border-radius: 5px;
     padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
     cursor: pointer;
-    background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
-    box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 5px #2e2e2e;
-    color: #fff;
-    transition: background 0.3s, transform 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-#questionBox input[type="submit"]:hover {
-    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-    transform: translateY(-1px);
+.ask-btn:hover, .back-btn:hover {
+    background-color: #005f73;
 }
 
-/* ============== OTHER COMPONENT STYLES ============== */
-.ask-btn {
-    color: #d59563;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    width: 80px;
-    height: 30px;
-}
-
-.back-btn {
-    color: #d59563;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    width: 50px;
-    height: 30px;
-    margin-bottom: 10px;
-}
-
-#answer {
-    margin-top: 10px;
-    color: #fff;
-}
-
-/* -------------- Dropdown Styles -------------- */
-#questionBox select {
-    background-color: #242f3e;
-    color: #d59563;
-    border: 1px solid #515c6d;
-    padding: 8px 12px;
-    font-size: 16px;
-    margin-top: 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-#questionBox select:focus {
-    outline: none;
-    border-color: #d59563;
-}
-
-#questionBox select option {
-    background-color: #242f3e;
-    color: #d59563;
-}
-
-#questionBox select option:hover {
-    background-color: #515c6d;
-}
-
-/* -------------- Collapsible Styles -------------- */
+/* ============== COLLAPSIBLE STYLES ============== */
 .collapsible-btn {
-    cursor: pointer;
+    background-color: #ee9b00;
+    color: #ffffff;
     padding: 10px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    color: #d59563;
-    background-color: #f5f5f5;
-    text-align: center;
-    padding: 10px 20px;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    transition: background-color 0.3s;
-}
-
-.collapsible-btn:hover {
-    background-color: #e5e5e5;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
 }
 
 .collapsible-content {
-    padding: 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
 
-.collapsible-btn, .back-btn {
-    display: none;
-}
-
-/* -------------- Location Item Styles -------------- */
+/* ============== LOCATION ITEMS ============== */
 .location-item {
     padding: 10px;
-    cursor: pointer;
-    background-color: #3f4a58;
-    border-top: 1px solid #2f3948;
+    background-color: #ffffff;
+    border: 1px solid #94d2bd;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #005f73;
 }
 
 .location-item:hover {
-    background-color: #2f3948;
+    background-color: #94d2bd;
+    color: #ffffff;
+}
+
+
+
+
+
+/* Timeline container */
+#timeline-container {
+    height: 100px;
+    width: 100%;
+    background-color: #e6f7ff;
+    border-top: 2px solid #94d2bd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Timeline canvas */
+#timeline {
+    height: 80px;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #94d2bd;
+    box-shadow: 2px 2px 5px #cccccc;
 }

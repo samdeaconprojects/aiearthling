@@ -91,7 +91,60 @@ const darkTheme = [
     },
   ];
 
-  let googleMapsApiKey;
+ 
+
+const lightTheme = [
+    { elementType: "geometry", stylers: [{ color: "#e6f7ff" }] },
+    { elementType: "labels.text.stroke", stylers: [{ color: "#ffffff" }] },
+    { elementType: "labels.text.fill", stylers: [{ color: "#005f73" }] },
+    {
+        featureType: "administrative.locality",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#0a9396" }],
+    },
+    {
+        featureType: "poi",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#94d2bd" }],
+    },
+    {
+        featureType: "poi.park",
+        elementType: "geometry",
+        stylers: [{ color: "#e9ffdb" }],
+    },
+    {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{ color: "#eaf4f4" }],
+    },
+    {
+        featureType: "road",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#94d2bd" }],
+    },
+    {
+        featureType: "road.highway",
+        elementType: "geometry",
+        stylers: [{ color: "#ee9b00" }],
+    },
+    {
+        featureType: "road.highway",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#ffb703" }],
+    },
+    {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ color: "#ade8f4" }],
+    },
+    {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#005f73" }],
+    },
+];
+
+let googleMapsApiKey;
 
 // Fetch the Google Maps API key from the server
 fetch('/getGoogleMapsApiKey')
@@ -111,7 +164,6 @@ function loadGoogleMapsScript() {
     document.body.appendChild(script);
 }
 
-
 function initMap() {
     console.log("Initializing Map...");
     const washingtonDC = { lat: 38.9072, lng: -77.0369 };
@@ -119,20 +171,21 @@ function initMap() {
         center: washingtonDC,
         zoom: 6,
         mapTypeId: "terrain",
-        styles: darkTheme,
+        styles: lightTheme,
     });
 
     infowindow = new google.maps.InfoWindow();
 
-    document
-        .getElementById("questionInput")
-        .addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                askQuestion();
-                event.preventDefault(); // To prevent default action associated with Enter key
-            }
-        });
+    document.getElementById("questionInput").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            askQuestion();
+            event.preventDefault();
+        }
+    });
 }
+
+// Remaining functions remain the same...
+
 
 function goBack() {
     if (statesStack.length === 0) return;
@@ -186,6 +239,64 @@ function toggleCollapse() {
         content.style.maxHeight = content.scrollHeight + "px";
     }
 }
+
+function drawTimeline(startYear, endYear, highlights = []) {
+    const canvas = document.getElementById('timeline');
+    const ctx = canvas.getContext('2d');
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Timeline parameters
+    const padding = 50; // Padding on either side
+    const years = endYear - startYear + 1;
+    const step = (width - padding * 2) / years;
+
+    // Draw the base timeline
+    ctx.strokeStyle = '#005f73';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, height / 2);
+    ctx.lineTo(width - padding, height / 2);
+    ctx.stroke();
+
+    // Draw year markers and labels
+    for (let i = 0; i <= years; i++) {
+        const x = padding + i * step;
+        ctx.beginPath();
+        ctx.moveTo(x, height / 2 - 10);
+        ctx.lineTo(x, height / 2 + 10);
+        ctx.stroke();
+
+        // Draw year labels
+        ctx.fillStyle = '#005f73';
+        ctx.textAlign = 'center';
+        ctx.font = '12px Arial';
+        ctx.fillText(startYear + i, x, height / 2 + 25);
+    }
+
+    // Highlight events
+    highlights.forEach(event => {
+        const { year, label } = event;
+        const x = padding + (year - startYear) * step;
+
+        // Draw marker
+        ctx.fillStyle = '#ee9b00';
+        ctx.beginPath();
+        ctx.arc(x, height / 2, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw label
+        ctx.fillStyle = '#005f73';
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, height / 2 - 15);
+    });
+}
+
 
 
 
